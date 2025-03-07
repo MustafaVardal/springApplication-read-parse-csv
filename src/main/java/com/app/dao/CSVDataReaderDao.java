@@ -1,6 +1,7 @@
 package com.app.dao;
 
 import com.app.entity.Employee;
+import de.siegmar.fastcsv.reader.CsvReader;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
@@ -15,6 +16,8 @@ public class CSVDataReaderDao {
     private static final String DELIMITER = ","; // CSV delimiter
 
     public List<Employee> readCSVFileData(String fileName) {
+        CsvReader.builder().ofCsvRecord(fileName);
+
         List<Employee> employees = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
